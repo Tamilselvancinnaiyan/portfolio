@@ -2,6 +2,12 @@
 
 import React from "react";
 
+const startDate = new Date("2022-05-01");
+const now = new Date();
+const months =
+  (now.getFullYear() - startDate.getFullYear()) * 12 +
+  (now.getMonth() - startDate.getMonth());
+const experience = (months / 12).toFixed(1);
 export default function Skills({ id }: { id: string }) {
   return (
     <section id={id} className="skills-section">
@@ -138,7 +144,7 @@ export default function Skills({ id }: { id: string }) {
 
         {/* Box 2: Experience Stat */}
         <div className="bento-item tall" style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-          <span className="stat-number">3+</span>
+          <span className="stat-number">{experience}+</span>
           <p style={{ fontWeight: '800', fontSize: '1.1rem', letterSpacing: '1px' }}>YEARS EXP</p>
           <p className="description">Full-Stack Dev</p>
         </div>
