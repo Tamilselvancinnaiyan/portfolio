@@ -46,9 +46,9 @@ export const metadata: Metadata = {
   publisher: "Tamilselvan",
   category: "technology",
   icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
-    apple: "/icon.svg",
+    icon: "icon.svg",
+    shortcut: "icon.svg",
+    apple: "icon.svg",
   },
   openGraph: {
     title: "Tamilselvan | Full-Stack Engineer",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     siteName: "Tamilselvan Portfolio",
     images: [
       {
-        url: "/opengraph-image",
+        url: "opengraph-image",
         width: 1200,
         height: 630,
         alt: "Tamilselvan, Full-Stack Engineer",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     title: "Tamilselvan | Full-Stack Engineer",
     description:
       "Full-stack engineer building scalable backend systems, cloud-ready platforms, and reliable digital products.",
-    images: ["/twitter-image"],
+    images: ["twitter-image"],
   },
 };
 
