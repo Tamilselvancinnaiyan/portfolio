@@ -12,10 +12,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const defaultSiteUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://tamilselvancinnaiyan.github.io/portfolio"
+    : "http://localhost:3000";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? defaultSiteUrl;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: siteUrl,
+  },
   title: {
     default: "Tamilselvan | Full-Stack Engineer",
     template: "%s | Tamilselvan",
