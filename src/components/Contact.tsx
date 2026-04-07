@@ -210,7 +210,7 @@ export default function Contact({ id }: { id: string }) {
                         <div className="pulse"></div>
                         AVAILABLE FOR NEW PROJECTS
                     </div>
-                    <h3 className="portal-title">Let's build something <br /> exceptional.</h3>
+                    <h3 className="portal-title">Let&apos;s build something <br /> exceptional.</h3>
                     <p style={{ color: '#666', lineHeight: '1.6', fontSize: '1.1rem' }}>
                         Whether you have a question or just want to say hi, my inbox is always open!
                     </p>
@@ -226,16 +226,15 @@ export default function Contact({ id }: { id: string }) {
                             className="terminal-card"
                             style={{
                                 "--brand-color": method.color,
-                                "--brand-glow": `${method.color}88` // Increased glow opacity
+                                "--brand-glow": `${method.color}88`
                             } as React.CSSProperties}
                         >
                             <div className="method-icon">
                                 {method.icon}
                             </div>
                             <div className="method-info">
-                                <span className="method-tag">{method.tag} // {method.label}</span>
+                                <span className="method-tag">{method.tag} • {method.label}</span>
                                 <div className="method-value">
-                                    {/* {method.value} */}
                                     <span className="external-icon"> take a look
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                                     </span>

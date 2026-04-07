@@ -3,7 +3,6 @@ import styles from "./page.module.css";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import ProjectExperience from "@/components/ProjectExperience";
-import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 
 export default function Home() {

@@ -12,9 +12,58 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "Tamilselvan",
-  description: "A showcase of my work and skills",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Tamilselvan | Full-Stack Engineer",
+    template: "%s | Tamilselvan",
+  },
+  description:
+    "Tamilselvan is a full-stack engineer focused on scalable backend systems, cloud infrastructure, and reliable product engineering.",
+  applicationName: "Tamilselvan Portfolio",
+  keywords: [
+    "Tamilselvan",
+    "Full-Stack Engineer",
+    "Backend Engineer",
+    "Software Engineer",
+    "Node.js",
+    "Next.js",
+    "Cloud Infrastructure",
+    "Portfolio",
+  ],
+  authors: [{ name: "Tamilselvan" }],
+  creator: "Tamilselvan",
+  publisher: "Tamilselvan",
+  category: "technology",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
+  openGraph: {
+    title: "Tamilselvan | Full-Stack Engineer",
+    description:
+      "Full-stack engineer building scalable backend systems, cloud-ready platforms, and reliable digital products.",
+    type: "website",
+    siteName: "Tamilselvan Portfolio",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Tamilselvan, Full-Stack Engineer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tamilselvan | Full-Stack Engineer",
+    description:
+      "Full-stack engineer building scalable backend systems, cloud-ready platforms, and reliable digital products.",
+    images: ["/twitter-image"],
+  },
 };
 
 import Navbar from "@/components/Navbar";

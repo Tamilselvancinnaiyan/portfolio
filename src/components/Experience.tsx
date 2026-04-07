@@ -231,7 +231,7 @@ export default function Experience({ id }: { id: string }) {
             <div className="content-side">
               <div className="company-tag">
                 {job.company}
-                <span className="duration-text">// {job.duration}</span>
+                <span className="duration-text">• {job.duration}</span>
               </div>
               <h3 className="role-title">{job.role}</h3>
               <ul className="points-list">

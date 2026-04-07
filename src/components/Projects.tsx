@@ -199,7 +199,7 @@ export default function Projects({ id }: { id: string }) {
                 {PROJECT_DATA.map((proj) => (
                     <div key={proj.id} className="floating-card">
                         <div className="main-tile">
-                            <span className="p-id">// {proj.id}</span>
+                            <span className="p-id">ID {proj.id}</span>
                             <h3 className="p-title">{proj.title}</h3>
                             <p className="p-desc">{proj.desc}</p>
                         </div>
