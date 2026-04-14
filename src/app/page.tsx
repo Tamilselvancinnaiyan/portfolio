@@ -24,7 +24,7 @@ export default function Home() {
             <Link href="#projects" className={styles.primaryBtn}>
               View Projects <span>→</span>
             </Link>
-            <a href="/resume.pdf" download className={styles.secondaryBtn}>
+            <a href="/Tamilselvan_Software_Engineer.pdf" download className={styles.secondaryBtn}>
               <span>↓</span> Download Resume
             </a>
           </div>
