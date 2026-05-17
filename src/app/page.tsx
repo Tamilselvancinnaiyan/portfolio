@@ -13,11 +13,10 @@ export default function Home() {
           <span className={styles.greeting}>Hi, I&#39;m</span>
           <h1 className={styles.title}>Tamilselvan</h1>
           <h2 className={styles.subtitle}>
-            Full-Stack Developer | Backend-Focused | Cloud & Scalable Systems
+           Backend Engineer specializing in scalable systems, AI-driven workflows, and cloud infrastructure.
           </h2>
           <p className={styles.description}>
-            I design and build scalable, secure, and high-performance web
-            applications.
+            4+ years of experience building microservices, healthcare systems, workflow automation platforms, and AWS-powered backend architectures using Node.js, TypeScript, PostgreSQL, Docker, and Kubernetes.
           </p>
 
           <div className={styles.buttonGroup}>
