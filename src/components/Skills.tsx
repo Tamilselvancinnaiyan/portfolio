@@ -72,6 +72,7 @@ export default function Skills({ id }: { id: string }) {
 
         .skill-chip {
           display: inline-block;
+          white-space: nowrap;
           background: rgba(255, 255, 255, 0.03);
           padding: 8px 18px;
           border-radius: 12px;
@@ -171,9 +172,11 @@ export default function Skills({ id }: { id: string }) {
 
         {/* Box 5: Automation */}
         <div className="bento-item">
-          <h3>Automation</h3>
-          <p className="description">Selenium Expert</p>
-          <div className="skill-chip" style={{ marginTop: '10px' }}>REST API Testing</div>
+          <h3>AI & Automation</h3>
+          <p className="skill-chip">AI Workflow Systems</p>
+          <p className="skill-chip">LLM Integrations</p>
+          <p className="skill-chip">Event-Driven Pipelines</p>
+          <p className="skill-chip">Async Job Processing</p>
         </div>
 
         {/* Box 6: Frontend */}
