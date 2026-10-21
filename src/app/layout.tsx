@@ -74,6 +74,7 @@ export const metadata: Metadata = {
   },
 };
 
+import ParticleCursor from "@/components/ParticleCursor";
 import Navbar from "@/components/Navbar";
 import StardustBackground from "@/components/StardustBackground";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -88,6 +89,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <StardustBackground />
         <Navbar />
+        <ParticleCursor />
         {children}
         <GoogleAnalytics gaId="G-5MMC2NPX1T" />
       </body>
