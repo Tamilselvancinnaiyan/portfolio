@@ -9,10 +9,13 @@ const EXP_DATA = [
     role: "Software Engineer",
     duration: "Jan 2025 — Present",
     points: [
-      "Architected scalable SaaS backend systems with optimized database schemas.",
-      "Developed booking systems featuring complex slot management and transactional flows.",
-      "Integrated secure global payment orchestrations via Stripe and Razorpay.",
-      "Implemented real-time video connectivity using Zoom API integrations."
+      "Engineered scalable backend services using NestJS, TypeScript, PostgreSQL, Redis, and AWS for healthcare and SaaS platforms.",
+      "Built appointment scheduling and booking workflows using Redis-based slot reservations and PostgreSQL transactions to handle concurrent bookings.",
+      "Implemented HL7 integrations for standardized patient and clinical data exchange between healthcare systems.",
+      "Integrated Stripe and Razorpay payment workflows, including payment processing, webhook handling, and transaction management.",
+      "Developed secure communication integrations using Gmail API, Microsoft Graph API, and OAuth 2.0.",
+      "Architected a multi-tenant SaaS platform with PostgreSQL, implementing role-based access control (RBAC) and row-level security (RLS).",
+      "Built a multi-tenant Investor Relations platform with tenant-specific public pages, subdomain routing, and AWS-based deployments."
     ]
   },
   {
@@ -21,10 +24,12 @@ const EXP_DATA = [
     role: "Software Engineer",
     duration: "May 2022 — Jan 2025",
     points: [
-      "Optimized result evaluation engines, drastically reducing error rates within 30 days.",
-      "Managed Dockerized full-stack environments using Kubernetes and Azure.",
-      "Built custom Chrome extensions for real-time exam integrity monitoring.",
-      "Developed biometric security modules including face liveness detection."
+      "Developed backend services for an online coding assessment and automated evaluation platform.",
+      "Built Docker-isolated execution environments supporting multiple programming languages and development stacks.",
+      "Debugged and resolved critical evaluation engine failures, improving the reliability of containerized code execution.",
+      "Deployed and maintained containerized services using Kubernetes and cloud infrastructure.",
+      "Developed face liveness detection and facial recognition integrations for authentication and assessment security.",
+      "Built custom Chrome extensions for real-time exam integrity monitoring, including screen recording and tab restriction enforcement."
     ]
   }
 ];
@@ -34,47 +39,47 @@ export default function Experience({ id }: { id: string }) {
     <section id={id} className="parallax-section">
       <style>{`
         .parallax-section {
-          padding: 100px 24px;
-          max-width: 1100px;
+          padding: 100px 32px;
+          max-width: 1440px;
           margin: 0 auto;
           color: #fff;
           font-family: 'Inter', system-ui, sans-serif;
         }
 
         /* Updated Header Area to match Contact component structure */
-        .header-area {
+        .parallax-section .header-area {
             text-align: center;
             margin-bottom: 100px;
         }
 
-        .header-area h2 {
+        .parallax-section .header-area h2 {
             font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 900;
             letter-spacing: -3px;
             margin: 0;
         }
 
-        .header-area span {
+        .parallax-section .header-area span {
             color: transparent;
-            -webkit-text-stroke: 1px var(--sky-cyan);
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.65);
         }
 
         /* End of Header update */
 
-        .exp-container {
+        .parallax-section .exp-container {
           display: flex;
           flex-direction: column;
           gap: 120px;
         }
 
-        .exp-block {
+        .parallax-section .exp-block {
           display: flex;
           align-items: center;
           gap: 60px;
           position: relative;
         }
 
-        .year-side {
+        .parallax-section .year-side {
           font-size: clamp(5rem, 12vw, 9rem);
           font-weight: 900;
           line-height: 0.8;
@@ -86,7 +91,7 @@ export default function Experience({ id }: { id: string }) {
           transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), -webkit-text-stroke 0.5s ease;
         }
 
-        .year-side::after {
+        .parallax-section .year-side::after {
           content: attr(data-year);
           position: absolute;
           left: 0;
@@ -94,7 +99,7 @@ export default function Experience({ id }: { id: string }) {
           width: 100%;
           height: 100%;
           color: transparent;
-          -webkit-text-stroke: 1px var(--sky-cyan);
+          -webkit-text-stroke: 1px rgba(133, 6, 6, 0.65);
           mask-image: linear-gradient(
             to right,
             transparent 0%,
@@ -108,12 +113,12 @@ export default function Experience({ id }: { id: string }) {
           pointer-events: none;
         }
 
-        .exp-block:hover .year-side {
+        .parallax-section .exp-block:hover .year-side {
           transform: translateX(30px) scale(1.05);
           -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
         }
 
-        .exp-block:hover .year-side::after {
+        .parallax-section .exp-block:hover .year-side::after {
           animation: passingLight 2.5s linear infinite;
         }
 
@@ -122,11 +127,11 @@ export default function Experience({ id }: { id: string }) {
           to { mask-position: 150% 0; }
         }
 
-        .content-side {
+        .parallax-section .content-side {
           flex: 1.2;
         }
 
-        .company-tag {
+        .parallax-section .company-tag {
           color: var(--sky-cyan);
           font-size: 0.85rem;
           font-weight: 700;
@@ -139,83 +144,89 @@ export default function Experience({ id }: { id: string }) {
           flex-wrap: wrap;
         }
 
-        .role-title {
+        .parallax-section .role-title {
           font-size: 2.2rem;
           font-weight: 800;
           margin: 0 0 20px 0;
           letter-spacing: -1px;
         }
 
-        .points-list {
+        .parallax-section .points-list {
           list-style: none;
           padding: 0;
           margin: 0;
+          display: grid;
+          gap: 14px;
         }
 
-        .points-list li {
-          color: #999;
+        .parallax-section .points-list li {
+          color: #909296ff;
           line-height: 1.6;
           font-size: 1rem;
-          margin-bottom: 12px;
+          margin: 0;
           position: relative;
           padding-left: 24px;
         }
 
-        .points-list li::before {
+        .parallax-section .points-list li::before {
           content: "";
           position: absolute;
           left: 0;
           top: 12px;
           width: 12px;
           height: 1px;
-          background: var(--sky-primary);
+          background: var(--sky-cyan);
         }
 
-        .duration-text {
+        .parallax-section .duration-text {
           font-family: monospace;
-          color: #555;
+          color: #a0a7b3;
           font-weight: 600;
           letter-spacing: 0;
           text-transform: none;
         }
 
-        .reverse {
+        .parallax-section .reverse {
           flex-direction: row-reverse;
           text-align: right;
         }
 
-        .reverse .company-tag {
+        .parallax-section .reverse .company-tag {
           justify-content: flex-end;
         }
 
-        .reverse:hover .year-side {
+        .parallax-section .reverse:hover .year-side {
           transform: translateX(-30px) scale(1.05);
         }
 
-        .reverse .points-list li {
+        .parallax-section .reverse .points-list li {
           padding-left: 0;
           padding-right: 24px;
         }
 
-        .reverse .points-list li::before {
+        .parallax-section .reverse .points-list li::before {
           left: auto;
           right: 0;
         }
 
+        @media (max-width: 600px) {
+          .parallax-section { padding-inline: 20px; }
+        }
+
         @media (max-width: 900px) {
-          .exp-block, .reverse {
+          .parallax-section .exp-block, .parallax-section .reverse {
             flex-direction: column;
             text-align: left;
             gap: 20px;
           }
-          .reverse .company-tag { justify-content: flex-start; }
-          .exp-block:hover .year-side, .reverse:hover .year-side {
+          .parallax-section .reverse .company-tag { justify-content: flex-start; }
+          .parallax-section .exp-block:hover .year-side, .parallax-section .reverse:hover .year-side {
             transform: translateY(-10px);
           }
-          .year-side { font-size: 5rem; }
-          .role-title { font-size: 1.8rem; }
-          .reverse .points-list li { padding-right: 0; padding-left: 24px; text-align: left; }
-          .reverse .points-list li::before { right: auto; left: 0; }
+          .parallax-section .year-side { font-size: 5rem; }
+          .parallax-section .role-title { font-size: 1.8rem; }
+          .parallax-section .reverse .points-list li { padding-right: 0; padding-left: 24px; text-align: left; }
+          .parallax-section .reverse .points-list li::before { right: auto; left: 0; }
         }
       `}</style>
 
