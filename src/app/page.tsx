@@ -1,14 +1,18 @@
+import ConstellationField from "@/components/ConstellationField";
+import constellationStyles from "@/components/ConstellationField.module.css";
 import Link from "next/link";
 import styles from "./page.module.css";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import ProjectExperience from "@/components/ProjectExperience";
+import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
     <div className={styles.main}>
-      <div className={styles.hero} id="home">
+      <div className={`${styles.hero} ${constellationStyles.region}`} id="home">
+        <ConstellationField seed={104729} />
         {/* Background Decorative Elements */}
         <div className={styles.ambientGlow}></div>
         <div className={styles.ambientGlowTwo}></div>
@@ -40,10 +44,22 @@ export default function Home() {
         </div>
       </div>
 
-      <Skills id="skills" />
-      <Experience id="experience" />
-      <ProjectExperience id="project-experience" />
-      {/* <Projects id="projects" /> */}
+      <div className={constellationStyles.region}>
+        <ConstellationField seed={225287} />
+        <Skills id="skills" />
+      </div>
+      <div className={constellationStyles.region}>
+        <ConstellationField seed={350377} />
+        <Experience id="experience" />
+      </div>
+      <div className={constellationStyles.region}>
+        <ConstellationField seed={479909} />
+        <ProjectExperience id="project-experience" />
+      </div>
+      {/* <div className={constellationStyles.region}>
+        <ConstellationField seed={611953} />
+        <Projects id="projects" />
+      </div> */}
       <Contact id="contact" />
     </div>
   );

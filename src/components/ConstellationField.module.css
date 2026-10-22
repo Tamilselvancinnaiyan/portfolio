@@ -1,0 +1,17 @@
+.region { position: relative; isolation: isolate; }
+.field { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
+.cluster { position: absolute; width: clamp(200px, 25vw, 360px); height: auto; transform: rotate(var(--angle)); opacity: 0.4; }
+.cluster path { fill: none; stroke: rgba(137,247,254,0.35); stroke-width: 0.7; stroke-dasharray: 3 9; }
+.cluster circle { fill: #bfeeff; opacity: 0.65; animation: constellationTwinkle 6s ease-in-out var(--delay) infinite alternate; }
+.cluster circle:nth-of-type(2n) { animation-delay: calc(var(--delay) - 3s); }
+.placement0 { left: -3%; top: 8%; }
+.placement1 { right: -4%; top: 48%; }
+.placement2 { left: 43%; bottom: 3%; width: clamp(160px, 20vw, 280px); opacity: 0.22; }
+@keyframes constellationTwinkle { from { opacity: 0.25; } to { opacity: 0.85; } }
+@media (max-width: 600px) {
+  .cluster { width: 180px; opacity: 0.25; }
+  .placement0 { left: -80px; }
+  .placement1 { right: -85px; }
+  .placement2 { left: 35%; width: 150px; opacity: 0.15; }
+}
+@media (prefers-reduced-motion: reduce) { .cluster circle { animation: none; } }

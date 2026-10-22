@@ -28,9 +28,9 @@ export default function Projects({ id }: { id: string }) {
         <section id={id} className="projects-wrapper">
             <style>{`
                 .projects-wrapper {
-                    max-width: 1100px;
+                    max-width: 1440px;
                     margin: 0 auto;
-                    padding: 100px 24px;
+                    padding: 100px 32px;
                     color: #fff;
                     font-family: 'Inter', system-ui, sans-serif;
                 }
@@ -181,6 +181,10 @@ export default function Projects({ id }: { id: string }) {
 
                 .link-item:hover .arrow-icon {
                     transform: translate(3px, -3px);
+                }
+
+                @media (max-width: 600px) {
+                    .projects-wrapper { padding-inline: 20px; }
                 }
 
                 @media (max-width: 1000px) {
