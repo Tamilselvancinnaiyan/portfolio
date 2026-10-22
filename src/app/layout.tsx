@@ -18,6 +18,7 @@ const defaultSiteUrl =
     : "http://localhost:3000";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? defaultSiteUrl;
+const assetBasePath = process.env.NODE_ENV === "production" ? "/portfolio" : "";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -83,9 +84,8 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: "/icon.svg",
-    shortcut: "/icon.svg",
-    apple: "/apple-icon.png",
+    icon: `${assetBasePath}/icon.svg`,
+    shortcut: `${assetBasePath}/icon.svg`,
   },
 
   openGraph: {
