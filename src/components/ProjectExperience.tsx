@@ -1,6 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import styles from "./ProjectExperience.module.css";
+
 
 const PROFESSIONAL_PROJECTS = [
     {
@@ -10,24 +12,82 @@ const PROFESSIONAL_PROJECTS = [
         duration: "Jan 2025 — Present",
         projects: [
             {
-                title: "Scalable SaaS Backend",
-                desc: "Architected a multi-tenant backend system capable of handling high-concurrency requests.",
+                title: "Healthcare Booking & Scheduling Platform",
+                desc: "Developed backend services for hospital appointment scheduling, availability management, and concurrent booking workflows.",
                 impact: [
-                    "Optimized database schemas resulting in 40% faster query performance.",
-                    "Increased system throughput by 2.5x through efficient resource allocation.",
-                    "Significantly reduced server infrastructure costs by optimizing cloud instances."
+                    "Designed configurable appointment slots, availability rules, and booking lifecycle management.",
+                    "Implemented Redis-based temporary slot reservations to manage concurrent booking requests.",
+                    "Used PostgreSQL transactions to maintain booking consistency and prevent conflicting reservations."
                 ],
-                tech: ["Node.js", "PostgreSQL", "Redis", "AWS"]
+                tech: [
+                    "NestJS",
+                    "TypeScript",
+                    "PostgreSQL",
+                    "Redis",
+                    "AWS"
+                ]
             },
             {
-                title: "Global Payment Orchestration",
-                desc: "Integrated Stripe and Razorpay to support multi-currency transactions across different regions.",
+                title: "Payment Processing & Integration",
+                desc: "Built payment workflows integrating Stripe and Razorpay for healthcare transactions and payment lifecycle management.",
                 impact: [
-                    "Ensured 100% PCI-DSS compliance and implemented robust error handling.",
-                    "Enabled seamless cross-border payments for users across 15+ countries.",
-                    "Reduced transaction failure rates by 15% through intelligent webhook retry logic."
+                    "Integrated Stripe payment flows and Razorpay payment links for transaction processing.",
+                    "Implemented webhook handlers to process payment success, failure, and refund events.",
+                    "Managed payment status synchronization between external providers and internal booking records."
                 ],
-                tech: ["Express", "Stripe API", "Razorpay", "Webhooks"]
+                tech: [
+                    "NestJS",
+                    "Stripe",
+                    "Razorpay",
+                    "Webhooks",
+                    "PostgreSQL"
+                ]
+            },
+            {
+                title: "Healthcare Interoperability",
+                desc: "Implemented healthcare data exchange workflows to support communication between clinical systems.",
+                impact: [
+                    "Developed HL7 integrations for exchanging patient and clinical information.",
+                    "Worked with HL7 message segments including MSH, PID, ORC, and OBR.",
+                    "Built backend workflows for processing and integrating clinical data with application services."
+                ],
+                tech: [
+                    "NestJS",
+                    "HL7",
+                    "TypeScript",
+                    "PostgreSQL"
+                ]
+            },
+            {
+                title: "Email & Communication Integrations",
+                desc: "Integrated Google and Microsoft communication services into healthcare application workflows.",
+                impact: [
+                    "Implemented Gmail API and Microsoft Graph API integrations using OAuth 2.0.",
+                    "Developed authentication and token management workflows for connected accounts.",
+                    "Built backend services for accessing email and supporting application communication workflows."
+                ],
+                tech: [
+                    "NestJS",
+                    "Gmail API",
+                    "Microsoft Graph",
+                    "OAuth 2.0"
+                ]
+            },
+            {
+                title: "Multi-Tenant Investor Relations Platform",
+                desc: "Developed a SaaS platform supporting tenant-specific investor relations pages and cloud-hosted public websites.",
+                impact: [
+                    "Built tenant-specific public pages using Next.js and backend services.",
+                    "Implemented subdomain-based routing for individual tenant websites.",
+                    "Configured AWS-based hosting and routing using EC2, Route 53, CloudFront, and Nginx."
+                ],
+                tech: [
+                    "Next.js",
+                    "NestJS",
+                    "PostgreSQL",
+                    "AWS",
+                    "Nginx"
+                ]
             }
         ]
     },
@@ -38,203 +98,95 @@ const PROFESSIONAL_PROJECTS = [
         duration: "May 2022 — Jan 2025",
         projects: [
             {
-                title: "Result Evaluation Engine",
-                desc: "Built a high-performance engine for automated code grading in a distributed environment.",
+                title: "Automated Code Evaluation Platform",
+                desc: "Developed and maintained backend functionality for an online coding assessment platform with containerized code execution.",
                 impact: [
-                    "Reduced evaluation latency by 60% through containerized execution environments.",
-                    "Handled 100k+ concurrent submissions during peak exam periods with zero downtime.",
-                    "Implemented an isolated sandboxing layer to prevent malicious code execution."
+                    "Built Docker-isolated environments supporting multiple programming languages and development stacks.",
+                    "Investigated and resolved critical code evaluation failures to improve execution reliability.",
+                    "Deployed and maintained containerized services using Kubernetes and cloud infrastructure."
                 ],
-                tech: ["Docker", "Kubernetes", "Microservices", "RabbitMQ"]
+                tech: [
+                    "Docker",
+                    "Kubernetes",
+                    "Python",
+                    "Java",
+                    "Cloud"
+                ]
+            },
+            {
+                title: "Online Assessment Security",
+                desc: "Developed monitoring and authentication capabilities for online examination workflows.",
+                impact: [
+                    "Built a Chrome extension for real-time examination activity monitoring.",
+                    "Implemented face liveness detection and facial recognition integrations.",
+                    "Supported authentication and monitoring workflows for online assessments."
+                ],
+                tech: [
+                    "JavaScript",
+                    "Chrome Extensions",
+                    "Face Recognition",
+                    "REST APIs"
+                ]
             }
         ]
     }
 ];
-
 export default function ProjectExperience({ id }: { id: string }) {
+    const [expanded, setExpanded] = useState<Record<string, number | null>>({ p1: 0, p2: 0 });
+
     return (
-        <section id={id} className="sequential-wrapper">
-            <style>{`
-                .sequential-wrapper {
-                    max-width: 1440px;
-                    margin: 0 auto;
-                    padding: 100px 32px;
-                    color: #fff;
-                    font-family: 'Inter', system-ui, sans-serif;
-                }
-
-                .header-centered {
-                    text-align: center;
-                    margin-bottom: 100px;
-                }
-
-                .header-centered h2 {
-                    font-size: clamp(2.5rem, 6vw, 4rem);
-                    font-weight: 900;
-                    letter-spacing: -2px;
-                    margin: 0;
-                    color: #fff;
-                    text-transform: uppercase;
-                }
-
-                .header-centered span {
-                    color: transparent;
-                    -webkit-text-stroke: 1px #ff0080;
-                }
-
-                .company-section {
-                    margin-bottom: 120px;
-                }
-
-                .company-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: flex-end;
-                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                    padding-bottom: 20px;
-                    margin-bottom: 50px;
-                }
-
-                .company-name {
-                    font-size: 2.2rem;
-                    font-weight: 800;
-                    margin: 0;
-                }
-
-                .company-meta {
-                    text-align: right;
-                }
-
-                .role-text {
-                    display: block;
-                    color: #ff0080;
-                    font-family: monospace;
-                    font-size: 1rem;
-                    font-weight: 600;
-                }
-
-                .duration-text {
-                    font-size: 0.85rem;
-                    color: rgba(255, 255, 255, 0.4);
-                    font-family: monospace;
-                }
-
-                .project-grid {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 60px;
-                }
-
-                .project-item {
-                    display: grid;
-                    grid-template-columns: 1fr 1.2fr;
-                    gap: 50px;
-                }
-
-                .project-info h4 {
-                    font-size: 1.5rem;
-                    font-weight: 700;
-                    margin: 0 0 15px 0;
-                    color: #fff;
-                }
-
-                .project-desc {
-                    color: rgba(255, 255, 255, 0.5);
-                    line-height: 1.7;
-                    font-size: 1rem;
-                }
-
-                /* Impact Points Styling */
-                .impact-list {
-                    list-style: none;
-                    padding: 0;
-                    margin: 0;
-                }
-
-                .impact-item {
-                    position: relative;
-                    padding-left: 25px;
-                    margin-bottom: 12px;
-                    font-size: 0.95rem;
-                    color: #E0F7FA;
-                    line-height: 1.5;
-                }
-
-                .impact-item::before {
-                    content: "→";
-                    position: absolute;
-                    left: 0;
-                    color: #ff0080;
-                    font-weight: 900;
-                }
-
-                .tech-row {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: 10px;
-                    margin-top: 25px;
-                }
-
-                .tech-pill {
-                    font-family: monospace;
-                    font-size: 0.7rem;
-                    color: #ff0080;
-                    background: rgba(255, 0, 128, 0.05);
-                    border: 1px solid rgba(255, 0, 128, 0.2);
-                    padding: 4px 12px;
-                    border-radius: 4px;
-                    text-transform: uppercase;
-                }
-
-                @media (max-width: 600px) {
-                    .sequential-wrapper { padding-inline: 20px; }
-                }
-
-                @media (max-width: 850px) {
-                    .project-item { grid-template-columns: 1fr; gap: 30px; }
-                    .company-header { flex-direction: column; align-items: flex-start; gap: 10px; }
-                    .company-meta { text-align: left; }
-                }
-            `}</style>
-
-            <div className="header-centered">
+        <section id={id} className={styles.section}>
+            <header className={styles.heading}>
+                <p className={styles.eyebrow}>Selected engineering work</p>
                 <h2>Project <span>Experience</span></h2>
-            </div>
-
-            {PROFESSIONAL_PROJECTS.map((comp) => (
-                <div key={comp.id} className="company-section">
-                    <div className="company-header">
-                        <h3 className="company-name">{comp.company}</h3>
-                        <div className="company-meta">
-                            <span className="role-text">{comp.role}</span>
-                            <span className="duration-text">{comp.duration}</span>
-                        </div>
-                    </div>
-
-                    <div className="project-grid">
-                        {comp.projects.map((project, idx) => (
-                            <div key={idx} className="project-item">
-                                <div className="project-info">
-                                    <h4>{project.title}</h4>
-                                    <p className="project-desc">{project.desc}</p>
-                                    <div className="tech-row">
-                                        {project.tech.map(t => (
-                                            <span key={t} className="tech-pill">{t}</span>
-                                        ))}
+            </header>
+            {PROFESSIONAL_PROJECTS.map((company) => (
+                <div key={company.id} className={styles.company}>
+                    <header className={styles.companyHeader}>
+                        <h3>{company.company}</h3>
+                        <p>{company.role}<span>{company.duration}</span></p>
+                    </header>
+                    <div className={styles.timeline}>
+                        {company.projects.map((project, index) => {
+                            const isExpanded = expanded[company.id] === index;
+                            const panelId = `${id}-${company.id}-${index}`;
+                            return (
+                                <article key={project.title} className={`${styles.project} ${isExpanded ? styles.expanded : ''}`}>
+                                    <h4>
+                                        <button
+                                            type="button"
+                                            className={styles.projectButton}
+                                            aria-expanded={isExpanded}
+                                            aria-controls={panelId}
+                                            id={`${panelId}-heading`}
+                                            onClick={() => setExpanded((previous) => ({ ...previous, [company.id]: isExpanded ? null : index }))}
+                                        >
+                                            <span className={styles.number}>{String(index + 1).padStart(2, '0')}</span>
+                                            <span className={styles.title}>{project.title}</span>
+                                            <span className={styles.preview}>{project.tech.slice(0, 3).join(' / ')}</span>
+                                            <span className={styles.toggle} aria-hidden="true">{isExpanded ? '−' : '+'}</span>
+                                        </button>
+                                    </h4>
+                                    <div className={styles.reveal} inert={!isExpanded} aria-hidden={!isExpanded}>
+                                        <div className={styles.revealInner}>
+                                            <div id={panelId} role="region" aria-labelledby={`${panelId}-heading`} className={styles.details}>
+                                                <div>
+                                                    <p className={styles.label}>Overview</p>
+                                                    <p className={styles.description}>{project.desc}</p>
+                                                    <div className={styles.tools}>
+                                                        {project.tech.map((tool) => <span key={tool}>{tool}</span>)}
+                                                    </div>
+                                                </div>
+                                                <div className={styles.contributions}>
+                                                    <p className={styles.label}>Key contributions</p>
+                                                    <ul>{project.impact.map((point) => <li key={point}>{point}</li>)}</ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div className="impact-container">
-                                    <ul className="impact-list">
-                                        {project.impact.map((point, pIdx) => (
-                                            <li key={pIdx} className="impact-item">
-                                                {point}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        ))}
+                                </article>
+                            );
+                        })}
                     </div>
                 </div>
             ))}
