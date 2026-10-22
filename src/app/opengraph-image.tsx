@@ -59,7 +59,7 @@ export default function OpenGraphImage() {
               maxWidth: "900px",
             }}
           >
-            Full-Stack Engineer
+            Software Engineer
           </div>
           <div
             style={{

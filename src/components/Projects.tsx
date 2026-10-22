@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
 const PROJECT_DATA = [
     {
@@ -23,7 +23,50 @@ const PROJECT_DATA = [
     }
 ];
 
+type CaseStudy = {
+    title: string;
+    synopsis: string;
+    url: string;
+    topics?: string[];
+};
+
+// Add published studies here. The URL can be a full external URL or a local page path.
+const CASE_STUDIES: CaseStudy[] = [
+    {
+        title: "Stock Management App",
+        synopsis: "A closer look at the Stock Management App. Explore the full project write-up on Notion.",
+        url: "https://app.notion.com/p/road-map-12-weeks-393732e646a68005a6b3f7255c9aef98?source=copy_link",
+    },
+    {
+        title: "Stock Management App",
+        synopsis: "A closer look at the Stock Management App. Explore the full project write-up on Notion.",
+        url: "https://app.notion.com/p/road-map-12-weeks-393732e646a68005a6b3f7255c9aef98?source=copy_link",
+    },
+    {
+        title: "Stock Management App",
+        synopsis: "A closer look at the Stock Management App. Explore the full project write-up on Notion.",
+        url: "https://app.notion.com/p/road-map-12-weeks-393732e646a68005a6b3f7255c9aef98?source=copy_link",
+    },
+    {
+        title: "Stock Management App",
+        synopsis: "A closer look at the Stock Management App. Explore the full project write-up on Notion.",
+        url: "https://app.notion.com/p/road-map-12-weeks-393732e646a68005a6b3f7255c9aef98?source=copy_link",
+    },
+    {
+        title: "Stock Management App",
+        synopsis: "A closer look at the Stock Management App. Explore the full project write-up on Notion.",
+        url: "https://app.notion.com/p/road-map-12-weeks-393732e646a68005a6b3f7255c9aef98?source=copy_link",
+    },
+    {
+        title: "Stock Management App",
+        synopsis: "A closer look at the Stock Management App. Explore the full project write-up on Notion.",
+        url: "https://app.notion.com/p/road-map-12-weeks-393732e646a68005a6b3f7255c9aef98?source=copy_link",
+    },
+];
+
 export default function Projects({ id }: { id: string }) {
+    const [showAllStudies, setShowAllStudies] = useState(false);
+    const visibleStudies = showAllStudies ? CASE_STUDIES : CASE_STUDIES.slice(0, 5);
     return (
         <section id={id} className="projects-wrapper">
             <style>{`
@@ -183,6 +226,49 @@ export default function Projects({ id }: { id: string }) {
                     transform: translate(3px, -3px);
                 }
 
+                .projects-wrapper .case-studies { margin-top: 72px; }
+                .projects-wrapper .case-studies-heading { margin-bottom: 28px; }
+                .projects-wrapper .case-studies-heading h3 { font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -2px; font-weight: 900; }
+                .projects-wrapper .case-studies-heading h3 span { color: transparent; -webkit-text-stroke: 1px var(--sky-cyan); }
+                @media (max-width: 600px) { .projects-wrapper .case-studies-heading h3 { letter-spacing: -1px; } }
+                .projects-wrapper .case-studies-heading p { color: #aab1bd; margin-top: 10px; line-height: 1.6; }
+                .projects-wrapper .study-bento { display: flex; flex-wrap: wrap; align-items: stretch; gap: 24px; }
+                .projects-wrapper .study-card {
+                    flex: 1 1 300px;
+                    min-width: 0;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 20px;
+                    padding: clamp(24px, 3vw, 36px);
+                    background: rgba(0,0,0,0.4);
+                    backdrop-filter: blur(16px);
+                    -webkit-backdrop-filter: blur(16px);
+                    border: 1px solid rgba(255,255,255,0.08);
+                    border-radius: 28px;
+                    transition: transform 0.3s ease, border-color 0.3s ease;
+                }
+                .projects-wrapper .study-card:nth-child(5n + 1) { flex: 2 1 480px; }
+                .projects-wrapper .study-card:hover { transform: translateY(-5px); border-color: rgba(137,247,254,0.5); }
+                .projects-wrapper .study-index { font: 0.75rem monospace; letter-spacing: 2px; color: var(--sky-cyan); }
+                .projects-wrapper .study-card h4 { font-size: clamp(1.35rem, 2vw, 1.8rem); line-height: 1.3; letter-spacing: -0.5px; overflow-wrap: anywhere; }
+                .projects-wrapper .study-card:nth-child(5n + 1) h4 { font-size: clamp(1.6rem, 3vw, 2.5rem); }
+                .projects-wrapper .study-synopsis { color: #b8bec8; line-height: 1.7; overflow-wrap: anywhere; }
+                .projects-wrapper .study-topics { display: flex; flex-wrap: wrap; gap: 8px; }
+                .projects-wrapper .study-topics span { padding: 6px 10px; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #aab1bd; font-size: 0.75rem; }
+                .projects-wrapper .study-link { margin-top: auto; padding-top: 12px; color: var(--sky-cyan); font-size: 0.9rem; font-weight: 600; }
+                .projects-wrapper .study-link:hover { text-decoration: underline; text-underline-offset: 5px; }
+                .projects-wrapper .study-more { display: block; margin: 28px auto 0; padding: 12px 24px; min-height: 48px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.18); border-radius: 50px; color: #fff; font: inherit; font-size: 0.9rem; cursor: pointer; }
+                .projects-wrapper .study-more:hover { border-color: var(--sky-cyan); }
+                .projects-wrapper .study-link:focus-visible, .projects-wrapper .study-more:focus-visible { outline: 2px solid var(--sky-cyan); outline-offset: 5px; }
+                .projects-wrapper .study-empty { padding: 28px; color: #aab1bd; }
+                @media (max-width: 1100px) {
+                    .projects-wrapper .study-card, .projects-wrapper .study-card:nth-child(5n + 1) { flex: 1 1 300px; }
+                }
+                @media (max-width: 600px) {
+                    .projects-wrapper .study-card, .projects-wrapper .study-card:nth-child(5n + 1) { flex-basis: 100%; }
+                }
+                @media (prefers-reduced-motion: reduce) { .projects-wrapper .study-card { transition: none; } .projects-wrapper .study-card:hover { transform: none; } }
                 @media (max-width: 600px) {
                     .projects-wrapper { padding-inline: 20px; }
                 }
@@ -245,6 +331,41 @@ export default function Projects({ id }: { id: string }) {
                     </div>
                 ))}
             </div>
+
+            <section className="case-studies" aria-labelledby={`${id}-case-studies`}>
+                <header className="case-studies-heading">
+                    <h3 id={`${id}-case-studies`}>Case <span>Studies</span></h3>
+                    <p>A closer look at the thinking behind the work.</p>
+                </header>
+                {CASE_STUDIES.length > 0 ? (
+                    <>
+                        <div className="study-bento" id={`${id}-study-list`}>
+                            {visibleStudies.map((study, index) => (
+                                <article key={`${study.url}-${index}`} className="study-card">
+                                    <span className="study-index">CASE STUDY / {String(index + 1).padStart(2, '0')}</span>
+                                    <h4>{study.title}</h4>
+                                    <p className="study-synopsis">{study.synopsis}</p>
+                                    {study.topics && (
+                                        <div className="study-topics">
+                                            {study.topics.map((topic) => <span key={topic}>{topic}</span>)}
+                                        </div>
+                                    )}
+                                    <a href={study.url} target="_blank" rel="noopener noreferrer" className="study-link" aria-label={`Read full case study: ${study.title} (opens in a new tab)`}>
+                                        Read full case study <span aria-hidden="true">↗</span>
+                                    </a>
+                                </article>
+                            ))}
+                        </div>
+                        {CASE_STUDIES.length > 5 && (
+                            <button type="button" className="study-more" aria-expanded={showAllStudies} aria-controls={`${id}-study-list`} onClick={() => setShowAllStudies((previous) => !previous)}>
+                                {showAllStudies ? 'Show less' : `See more (${CASE_STUDIES.length - 5})`}
+                            </button>
+                        )}
+                    </>
+                ) : (
+                    <p className="study-empty">Case studies coming soon.</p>
+                )}
+            </section>
         </section>
     );
 }

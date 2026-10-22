@@ -21,58 +21,104 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? defaultSiteUrl;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+
   alternates: {
-    canonical: siteUrl,
+    canonical: "/",
   },
+
   title: {
-    default: "Tamilselvan | Full-Stack Engineer",
-    template: "%s | Tamilselvan",
+    default: "Tamilselvan | Software Engineer",
+    template: "%s | Tamilselvan ",
   },
+
   description:
-    "Tamilselvan is a full-stack engineer focused on scalable backend systems, cloud infrastructure, and reliable product engineering.",
-  applicationName: "Tamilselvan Portfolio",
+    "Tamilselvan C is a Software Engineer with 4+ years of experience building scalable applications using Node.js, NestJS, TypeScript, PostgreSQL, Redis, and AWS. Explore projects in microservices, distributed systems, cloud infrastructure, and AI-powered applications.",
+
+  applicationName: "Tamilselvan C | Engineering Portfolio",
+
   keywords: [
-    "Tamilselvan",
-    "Full-Stack Engineer",
+    "Tamilselvan C",
+    "Tamilselvan Software Engineer",
+    "Tamilselvan Backend Developer",
+    "Backend Software Engineer",
     "Backend Engineer",
-    "Software Engineer",
-    "Node.js",
-    "Next.js",
+    "Node.js Developer",
+    "NestJS Developer",
+    "TypeScript Developer",
+    "PostgreSQL",
+    "Redis",
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "Microservices",
+    "Distributed Systems",
+    "System Design",
+    "REST API Development",
     "Cloud Infrastructure",
-    "Portfolio",
+    "AI-Powered Applications",
+    "Software Engineering Portfolio",
   ],
-  authors: [{ name: "Tamilselvan" }],
-  creator: "Tamilselvan",
-  publisher: "Tamilselvan",
+
+  authors: [
+    {
+      name: "Tamilselvan C",
+      url: siteUrl,
+    },
+  ],
+
+  creator: "Tamilselvan C",
+  publisher: "Tamilselvan C",
   category: "technology",
-  icons: {
-    icon: "icon.svg",
-    shortcut: "icon.svg",
-    apple: "icon.svg",
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
+
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/apple-icon.png",
+  },
+
   openGraph: {
-    title: "Tamilselvan | Full-Stack Engineer",
-    description:
-      "Full-stack engineer building scalable backend systems, cloud-ready platforms, and reliable digital products.",
     type: "website",
-    siteName: "Tamilselvan Portfolio",
+    locale: "en_IN",
+    url: siteUrl,
+    siteName: "Tamilselvan C | Portfolio",
+    title: "Tamilselvan C | Software Engineer",
+    description:
+      "Software Engineer specializing in Node.js, NestJS, PostgreSQL, AWS, microservices, and scalable backend architecture. Explore my engineering projects and case studies.",
     images: [
       {
-        url: "opengraph-image",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Tamilselvan, Full-Stack Engineer",
+        alt: "Tamilselvan C — Software Engineer",
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Tamilselvan | Full-Stack Engineer",
+    title: "Tamilselvan C | Software Engineer",
     description:
-      "Full-stack engineer building scalable backend systems, cloud-ready platforms, and reliable digital products.",
-    images: ["twitter-image"],
+      "Building scalable backend systems, cloud-native applications, and AI-powered workflows with Node.js, NestJS, PostgreSQL, and AWS.",
+    images: ["/twitter-image"],
+  },
+
+  verification: {
+    // google: "YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE",
   },
 };
+
 
 import ParticleCursor from "@/components/ParticleCursor";
 import Navbar from "@/components/Navbar";

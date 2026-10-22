@@ -85,7 +85,7 @@ export default function Experience({ id }: { id: string }) {
         }
         .parallax-section .header-area span {
           color: transparent;
-          -webkit-text-stroke: 1px rgba(255, 255, 255, 0.65);
+          -webkit-text-stroke: 1px var(--sky-cyan);
         }
         .parallax-section .exp-container { display: grid; gap: 24px; }
         .parallax-section .exp-block {
