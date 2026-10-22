@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
 
@@ -13,6 +13,8 @@ const navItems = [
 ];
 
 export default function Navbar() {
+    const navRef = useRef<HTMLElement>(null);
+    const menuButtonRef = useRef<HTMLButtonElement>(null);
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("");
 
@@ -49,8 +51,27 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    useEffect(() => {
+        if (!isOpen) return;
+        const closeOutside = (event: PointerEvent) => {
+            if (event.target instanceof Node && !navRef.current?.contains(event.target)) setIsOpen(false);
+        };
+        const closeOnEscape = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setIsOpen(false);
+                menuButtonRef.current?.focus();
+            }
+        };
+        document.addEventListener('pointerdown', closeOutside);
+        document.addEventListener('keydown', closeOnEscape);
+        return () => {
+            document.removeEventListener('pointerdown', closeOutside);
+            document.removeEventListener('keydown', closeOnEscape);
+        };
+    }, [isOpen]);
+
     return (
-        <nav className={styles.navbar}>
+        <nav ref={navRef} className={styles.navbar} aria-label="Main navigation">
             <div className={styles.navContainer}>
                 <ul className={styles.links}>
                     {navItems.map((item) => (
@@ -66,15 +87,20 @@ export default function Navbar() {
                 </ul>
 
                 <button
+                    ref={menuButtonRef}
+                    type="button"
                     className={styles.mobileMenuBtn}
                     onClick={() => setIsOpen(!isOpen)}
-                    aria-label="Toggle menu"
+                    aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+                    aria-expanded={isOpen}
+                    aria-controls="mobile-navigation"
                 >
-                    {isOpen ? "✕" : "☰"}
+                    <span aria-hidden="true">{isOpen ? "✕" : "☰"}</span>
+                    <span>{isOpen ? "Close" : "Menu"}</span>
                 </button>
             </div>
 
-            <div className={`${styles.mobileMenu} ${isOpen ? styles.open : ""}`}>
+            <div id="mobile-navigation" inert={!isOpen} aria-hidden={!isOpen} className={`${styles.mobileMenu} ${isOpen ? styles.open : ""}`}>
                 {navItems.map((item) => (
                     <Link
                         key={item.name}

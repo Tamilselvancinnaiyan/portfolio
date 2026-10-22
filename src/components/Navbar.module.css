@@ -109,63 +109,60 @@
     display: none;
 }
 
-/* Mobile Responsiveness */
+/* Compact mobile dock with a panel anchored above its trigger. */
 @media (max-width: 768px) {
     .navbar {
         top: auto;
-        bottom: 2rem;
-        /* Bottom dock on mobile usually easiest */
-        width: 85%;
-        justify-content: space-between;
-        padding: 0.8rem 1.5rem;
+        bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+        left: auto;
+        right: 20px;
+        transform: none;
+        width: auto;
+        max-width: calc(100vw - 40px);
+        padding: 0;
+        background: rgba(15, 20, 28, 0.9);
     }
-
-    .links {
-        display: none;
-        /* Hide default links, use mobile menu overlay or different structure */
-    }
-
+    .navContainer { width: auto; gap: 0; }
+    .links { display: none; }
     .mobileMenuBtn {
-        display: block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 52px;
+        padding: 0 20px;
+        border-radius: 50px;
+        font: inherit;
+        font-size: 0.95rem;
     }
-
-    /* When menu is open, maybe expand usage? Or full screen overlay */
+    .mobileMenuBtn > span:first-child { font-size: 1.2rem; }
+    .mobileMenuBtn:focus-visible { outline: 2px solid var(--sky-cyan); outline-offset: 4px; }
     .mobileMenu {
-        position: fixed;
-        bottom: 6rem;
-        /* Above the dock */
-        left: 50%;
-        transform: translateX(-50%) scale(0.9);
-        width: 85%;
-        background: rgba(20, 20, 25, 0.8);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: absolute;
+        bottom: calc(100% + 12px);
+        right: 0;
+        width: min(280px, calc(100vw - 40px));
+        max-height: calc(100dvh - 120px - env(safe-area-inset-bottom, 0px));
+        overflow-y: auto;
+        transform: translateY(8px);
+        background: rgba(15, 20, 28, 0.97);
+        border: 1px solid rgba(255,255,255,0.12);
         border-radius: 20px;
-        padding: 1rem;
+        padding: 10px;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 4px;
+        box-shadow: 0 16px 48px rgba(0,0,0,0.4);
         opacity: 0;
+        visibility: hidden;
         pointer-events: none;
-        transition: all 0.3s ease;
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
     }
-
-    .mobileMenu.open {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateX(-50%) scale(1);
-    }
-
-    .mobileLink {
-        color: #fff;
-        font-size: 1.1rem;
-        text-align: center;
-        padding: 0.8rem;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.05);
-    }
-
-    .mobileLink:hover {
-        background: rgba(255, 120, 30, 0.2);
-    }
+    .mobileMenu.open { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); }
+    .mobileLink { color: #c5cbd4; font-size: 1rem; padding: 14px 16px; border-radius: 12px; }
+    .mobileLink:hover, .mobileLink.active { color: #fff; background: rgba(137,247,254,0.09); }
+    .mobileLink:focus-visible { outline: 2px solid var(--sky-cyan); outline-offset: -2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .mobileMenu, .navbar { transition: none; }
 }
