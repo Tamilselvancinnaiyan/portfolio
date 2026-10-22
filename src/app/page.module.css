@@ -52,13 +52,23 @@
 }
 
 @keyframes floatAmbient {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(50px, -50px) scale(1.1); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(50px, -50px) scale(1.1);
+  }
 }
 
 @keyframes floatAmbientReverse {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-50px, 30px) scale(1.2); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(-50px, 30px) scale(1.2);
+  }
 }
 
 .content {
@@ -97,14 +107,30 @@
 }
 
 @keyframes pulseDot {
-  0% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.2); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes floatBadge {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-5px); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-5px);
+  }
 }
 
 .greeting {
@@ -129,7 +155,7 @@
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
-  box-shadow: 
+  box-shadow:
     0 4px 30px rgba(0, 0, 0, 0.1),
     inset 0 1px 1px rgba(255, 255, 255, 0.1);
   margin-bottom: 2rem;
@@ -153,13 +179,23 @@
 }
 
 @keyframes drift {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 200% 50%;
+  }
 }
 
 @keyframes floatName {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-6px); }
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-6px);
+  }
 }
 
 .subtitle {
@@ -180,7 +216,7 @@
 
 .description {
   font-size: 1.15rem;
-  color: var(--text-muted);
+  color: #CBD5E1;
   max-width: 750px;
   margin: 0 auto 3rem;
   line-height: 1.7;
@@ -216,7 +252,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
   transition: all 0.5s ease;
 }
 
@@ -301,6 +337,7 @@
     opacity: 0;
     transform: translateY(40px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -312,28 +349,34 @@
   .title {
     font-size: 3.5rem;
   }
+
   .greeting {
     font-size: 1.5rem;
   }
+
   .subtitle {
     font-size: 1.3rem;
     white-space: normal;
   }
+
   .description {
     font-size: 1rem;
     padding: 0 1rem;
   }
+
   .buttonGroup {
     flex-direction: column;
     width: 100%;
     padding: 0 2rem;
     gap: 1rem;
   }
+
   .primaryBtn,
   .secondaryBtn {
     width: 100%;
     justify-content: center;
   }
+
   .techStack {
     padding: 0 1rem;
   }
