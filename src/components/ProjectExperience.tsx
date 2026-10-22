@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./ProjectExperience.module.css";
 
 
@@ -132,7 +132,34 @@ const PROFESSIONAL_PROJECTS = [
     }
 ];
 export default function ProjectExperience({ id }: { id: string }) {
+    const pendingHeading = useRef<HTMLButtonElement | null>(null);
     const [expanded, setExpanded] = useState<Record<string, number | null>>({ p1: 0, p2: 0 });
+
+    useEffect(() => {
+        const heading = pendingHeading.current;
+        if (!heading) return;
+        pendingHeading.current = null;
+        let cancelled = false;
+        let frame = 0;
+        const settleAndReveal = async () => {
+            const timeline = heading.closest(`.${styles.timeline}`);
+            const transitions = Array.from(timeline?.querySelectorAll(`.${styles.reveal}`) ?? [])
+                .flatMap((panel) => panel.getAnimations());
+            await Promise.allSettled(transitions.map((animation) => animation.finished));
+            if (cancelled || !heading.isConnected) return;
+            const bounds = heading.getBoundingClientRect();
+            if (bounds.top < 16 || bounds.bottom > window.innerHeight - 100) {
+                const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                const top = Math.max(0, window.scrollY + bounds.top - 16);
+                window.scrollTo({ top, behavior: reducedMotion ? 'instant' : 'smooth' });
+            }
+        };
+        // Wait for layout and the accordion transitions to be created before measuring.
+        frame = requestAnimationFrame(() => {
+            frame = requestAnimationFrame(() => { void settleAndReveal(); });
+        });
+        return () => { cancelled = true; cancelAnimationFrame(frame); };
+    }, [expanded]);
 
     return (
         <section id={id} className={styles.section}>
@@ -159,7 +186,10 @@ export default function ProjectExperience({ id }: { id: string }) {
                                             aria-expanded={isExpanded}
                                             aria-controls={panelId}
                                             id={`${panelId}-heading`}
-                                            onClick={() => setExpanded((previous) => ({ ...previous, [company.id]: isExpanded ? null : index }))}
+                                            onClick={(event) => {
+                                                pendingHeading.current = !isExpanded && window.matchMedia('(max-width: 850px)').matches ? event.currentTarget : null;
+                                                setExpanded((previous) => ({ ...previous, [company.id]: isExpanded ? null : index }));
+                                            }}
                                         >
                                             <span className={styles.number}>{String(index + 1).padStart(2, '0')}</span>
                                             <span className={styles.title}>{project.title}</span>
